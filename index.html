@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Majd Alhadi Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single calm column, left-aligned; hero reads like a profile card, sections split label | content on wide screens */
+:root{
+  --bg:#F6F8FA; --surface:#FFFFFF; --ink:#13202E; --muted:#5A6B7C; --line:#DCE3EA;
+  --accent:#1F5FAE; --accent-soft:#E6EEF8; --ok:#1E7B55; --ok-soft:#E3F3EB;
+  --display:"Schibsted Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Schibsted Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E151D; --surface:#141E29; --ink:#E6EDF4; --muted:#93A4B5; --line:#253343;
+  --accent:#7DB2F0; --accent-soft:#18283A; --ok:#6FD3A3; --ok-soft:#14291F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E151D; --surface:#141E29; --ink:#E6EDF4; --muted:#93A4B5; --line:#253343;
+  --accent:#7DB2F0; --accent-soft:#18283A; --ok:#6FD3A3; --ok-soft:#14291F; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding-inline:20px;padding-block:0 64px}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mark{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.mark b{color:var(--ink);font-weight:500}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+nav ul a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:64px 48px;display:grid;gap:28px}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;color:var(--ok);background:var(--ok-soft);padding:6px 12px;border-radius:999px;width:fit-content}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 50%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.02;letter-spacing:-.025em;font-weight:800}
+.hero h1 span{color:var(--muted);font-weight:600}
+.role{font-size:clamp(18px,2.4vw,22px);font-weight:500;max-width:34ch;line-height:1.4}
+.role em{font-style:normal;color:var(--accent)}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--body);padding:11px 18px;border-radius:8px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+
+/* pipeline strip — the blue team path */
+.path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.path div{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.path div:last-child{border-right:0}
+.path small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.path strong{font-size:15px;font-weight:600}
+.path .now{background:var(--accent-soft)}
+.path .now small{color:var(--accent)}
+
+/* sections */
+section{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;padding-block:48px;border-top:1px solid var(--line)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+.content{min-width:0;display:grid;gap:20px}
+.content h2{font-size:28px;letter-spacing:-.015em;font-weight:700}
+.content p{margin:0;max-width:65ch}
+
+/* projects */
+.projects{display:grid;gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;gap:12px}
+.proj-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.proj h3{font-size:20px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.live{background:var(--ok-soft);color:var(--ok)}
+.proj p{color:var(--muted)}
+.proj ul{margin:0;padding-left:18px;color:var(--muted)}
+.proj li{margin-block:2px}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font-family:var(--mono);font-size:12px;border:1px solid var(--line);padding:2px 8px;border-radius:5px;color:var(--ink)}
+
+/* alert sample */
+.log{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre;color:var(--muted);line-height:1.7}
+.log b{color:var(--accent);font-weight:500}
+.log i{font-style:normal;color:var(--ok)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.skills h3{font-size:14px;font-weight:600;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:14px;padding:5px 11px;border-radius:6px;background:var(--surface);border:1px solid var(--line)}
+
+/* certs & list rows */
+.rows{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding-block:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.row strong{font-weight:600}
+.row span{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.row p{grid-column:1/-1;color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{display:grid;gap:10px}
+.ci{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;flex-wrap:wrap}
+.ci small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ci .val{font-size:16px;font-weight:500;user-select:all;word-break:break-all}
+.copy{font:500 13px var(--body);padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+footer{padding-top:32px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+@media (max-width:720px){
+  section{grid-template-columns:minmax(0,1fr);gap:14px}
+  .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .path div:nth-child(2){border-right:0}
+  .path div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .skills{grid-template-columns:minmax(0,1fr)}
+  nav ul{gap:14px}
+  .hero{padding-block:44px 36px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="mark"><b>majd.alhadi</b> ~/portfolio</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="status"><span class="dot"></span>Open to cooperative training</div>
+    <h1>Majd Waleed<br><span>Alhadi</span></h1>
+    <p class="role">IT student building toward a <em>Blue Team</em> career as a SOC Analyst.</p>
+    <p class="lede">Information Technology student at Princess Nourah bint Abdulrahman University, graduating 2027. I work hands-on with SIEM monitoring, log analysis and Linux, and I'm looking for a cooperative training role in a real security operations environment.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="#projects">View projects</a>
+    </div>
+    <div class="path" aria-label="Career path">
+      <div><small>Done</small><strong>Security+</strong></div>
+      <div><small>Done</small><strong>SOC home lab</strong></div>
+      <div class="now"><small>Next</small><strong>Co-op training</strong></div>
+      <div><small>Goal</small><strong>SOC Analyst</strong></div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="label">About</div>
+    <div class="content">
+      <h2>From exploring IT to choosing defense</h2>
+      <p>Throughout my IT degree I tried different fields to see which one fits me in practice. Cybersecurity is the one I chose to commit to. I want to grow on the defensive side, the Blue Team, starting with the Security Operations Center: monitoring, detecting threats and responding to incidents.</p>
+      <p>I earned CompTIA Security+ as my first step and built my own SOC lab to practice what analysts do day to day. Now I'm looking for a cooperative training opportunity where I can learn from a real team and contribute.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="label">Projects</div>
+    <div class="content">
+      <h2>Selected work</h2>
+      <div class="projects">
+
+        <article class="proj">
+          <div class="proj-head"><h3>Wazuh SIEM Setup &amp; Configuration for Security Monitoring</h3><span class="tag">Security lab</span></div>
+          <p>A SOC home lab where I deployed and configured Wazuh to monitor Windows and Linux endpoints, then generated attacks from Kali Linux to detect, investigate and respond to them.</p>
+          <ul>
+            <li>Deployed the Wazuh manager and agents across Windows and Ubuntu machines</li>
+            <li>Analyzed logs and investigated alerts triggered by simulated attacks</li>
+            <li>Mapped detections to MITRE ATT&amp;CK techniques and analyzed IOCs</li>
+            <li>Practiced the incident handling process from detection to response</li>
+          </ul>
+          <div class="log" role="img" aria-label="Example alert format from the lab">rule.level: <b>10</b>   agent: <i>win-endpoint-01</i>
+rule.description: Multiple failed logon attempts
+mitre.technique: <b>T1110</b> Brute Force   tactic: Credential Access</div>
+          <div class="stack"><span>Wazuh</span><span>SIEM</span><span>Kali Linux</span><span>Ubuntu</span><span>Windows</span><span>MITRE ATT&amp;CK</span></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head"><h3>Smart Home Network Analyzer</h3><span class="tag live">Graduation project · in progress</span></div>
+          <p>A tool that analyzes home network quality and helps pinpoint whether a problem comes from inside the home network or from the internet provider.</p>
+          <ul>
+            <li>Tracks bandwidth consumption and network congestion</li>
+            <li>Breaks down usage per connected device to find the cause of slowdowns</li>
+          </ul>
+          <div class="stack"><span>Networking</span><span>Traffic analysis</span><span>Network quality</span></div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-head"><h3>VogaAR</h3><span class="tag">Team project</span></div>
+          <p>A virtual fashion platform that uses augmented reality so users can try on clothes virtually. Built with a team of five, covering project planning, scope, requirements and risk management.</p>
+          <div class="stack"><span>Augmented reality</span><span>Project management</span><span>Teamwork</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="label">Skills</div>
+    <div class="content">
+      <h2>What I work with</h2>
+      <div class="skills">
+        <div><h3>Security operations</h3><div class="chips"><span>Security monitoring</span><span>SIEM (Wazuh)</span><span>Log analysis</span><span>Threat detection</span><span>Alert investigation</span><span>Incident response</span><span>IOC analysis</span><span>MITRE ATT&amp;CK</span></div></div>
+        <div><h3>Systems</h3><div class="chips"><span>Linux</span><span>Kali Linux</span><span>Ubuntu</span><span>Windows</span><span>Network security</span></div></div>
+        <div><h3>Professional</h3><div class="chips"><span>Teamwork</span><span>Communication</span><span>Organization</span><span>Willingness to learn</span></div></div>
+        <div><h3>Languages</h3><div class="chips"><span>Arabic · Native</span><span>English · Intermediate</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Certifications</div>
+    <div class="content">
+      <div class="rows">
+        <div class="row"><strong>CompTIA Security+</strong><span>CompTIA</span></div>
+        <div class="row"><strong>Introduction to Cybersecurity</strong><span>Cisco</span></div>
+        <div class="row"><strong>Information Security Course</strong><span>Course</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Education</div>
+    <div class="content">
+      <div class="rows">
+        <div class="row"><strong>B.Sc. Information Technology</strong><span>Expected Jun 2027</span><p>Princess Nourah bint Abdulrahman University</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Volunteering</div>
+    <div class="content">
+      <div class="rows">
+        <div class="row"><strong>Graduation Projects Ceremony</strong><span>CCIS · PNU</span><p>Helped organize and prepare the ceremony and its event materials, working with the event team to finish tasks on time.</p></div>
+        <div class="row"><strong>Jusoor – Friends of Nourah Event</strong><span>PNU</span><p>Prepared hospitality arrangements and helped keep the event organized and welcoming for attendees.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="label">Contact</div>
+    <div class="content">
+      <h2>Let's talk</h2>
+      <p>I'm looking for a cooperative training opportunity in cybersecurity. Reach me any of these ways.</p>
+      <div class="contact">
+        <div class="ci"><div><small>Email</small><span class="val" id="v-email">mmajdalhadi@gmail.com</span></div><button class="copy" id="c-email" data-t="v-email">Copy</button></div>
+        <div class="ci"><div><small>LinkedIn</small><span class="val">Majd Alhadi</span></div><a class="btn" href="https://www.linkedin.com/in/majd-alhadi/" target="_blank" rel="noopener">Open profile</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Majd Waleed Alhadi · Riyadh, Saudi Arabia</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.t), txt=el.textContent;
+    function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+</body>
+</html>
