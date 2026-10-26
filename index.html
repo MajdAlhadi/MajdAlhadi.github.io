@@ -167,18 +167,18 @@ footer{padding-top:32px;border-top:1px solid var(--line);font-family:var(--mono)
       <div class="projects">
 
         <article class="proj">
-          <div class="proj-head"><h3>Wazuh SIEM Setup &amp; Configuration for Security Monitoring</h3><span class="tag">Security lab</span></div>
-          <p>A SOC home lab where I deployed and configured Wazuh to monitor Windows and Linux endpoints, then generated attacks from Kali Linux to detect, investigate and respond to them.</p>
+          <div class="proj-head"><h3>Wazuh SIEM SOC Lab</h3><span class="tag">Security lab · 60% complete</span></div>
+          <p>A SOC home lab for security monitoring. I completed 60% of the planned scope: SIEM deployment, endpoint integration and lab network setup.</p>
           <ul>
-            <li>Deployed the Wazuh manager and agents across Windows and Ubuntu machines</li>
-            <li>Analyzed logs and investigated alerts triggered by simulated attacks</li>
-            <li>Mapped detections to MITRE ATT&amp;CK techniques and analyzed IOCs</li>
-            <li>Practiced the incident handling process from detection to response</li>
+            <li>Deployed Wazuh on a virtual machine with its 3 core components (Manager, Indexer, Dashboard)</li>
+            <li>Installed and registered a Windows agent with the Wazuh Manager and verified its Active status</li>
+            <li>Designed a 3-host SOC-LAB network (Kali Linux, Windows, Ubuntu) for attack simulation and monitoring</li>
+            <li>Next phase planned: generating security events on Windows and analyzing the resulting alerts</li>
           </ul>
-          <div class="log" role="img" aria-label="Example alert format from the lab">rule.level: <b>10</b>   agent: <i>win-endpoint-01</i>
-rule.description: Multiple failed logon attempts
-mitre.technique: <b>T1110</b> Brute Force   tactic: Credential Access</div>
-          <div class="stack"><span>Wazuh</span><span>SIEM</span><span>Kali Linux</span><span>Ubuntu</span><span>Windows</span><span>MITRE ATT&amp;CK</span></div>
+          <div class="log" role="img" aria-label="SOC-LAB network layout">network: <b>SOC-LAB</b>   wazuh: <i>manager · indexer · dashboard</i>
+kali: <b>192.168.50.10</b>   windows: <b>192.168.50.20</b>   ubuntu: <b>192.168.50.30</b>
+agent: <b>Windows</b>   status: Active</div>
+          <div class="stack"><span>Wazuh</span><span>SIEM</span><span>Kali Linux</span><span>Ubuntu</span><span>Windows</span><span>Virtualization</span></div>
         </article>
 
         <article class="proj">
